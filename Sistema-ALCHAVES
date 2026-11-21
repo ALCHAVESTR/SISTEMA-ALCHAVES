@@ -1,0 +1,181 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ALCHAVES | Viagens e Transfers</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#101010;color:#fff;font-family:Arial,sans-serif}
+header{background:#080808;text-align:center;padding:28px 15px;border-bottom:2px solid #c9a33b}
+.logo{font-size:34px;font-weight:900;letter-spacing:3px}
+.gold{color:#d5ad4b}
+header p{color:#ccc;font-size:12px;letter-spacing:2px}
+.hero{padding:35px 20px;text-align:center;background:linear-gradient(145deg,#242424,#090909)}
+.hero h1{font-size:27px;margin:5px}
+.hero p{color:#ccc;line-height:1.5}
+.container{max-width:650px;margin:auto;padding:20px}
+h2{color:#d5ad4b;font-size:21px}
+.card{background:#1d1d1d;border:1px solid #393939;border-radius:12px;padding:18px;margin:15px 0}
+.tarifa{display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid #383838}
+label{display:block;margin:14px 0 6px;color:#e5c978;font-size:14px}
+input,select,textarea{width:100%;padding:13px;border-radius:7px;border:1px solid #555;background:#292929;color:white;font-size:16px}
+button{width:100%;padding:16px;background:#d5ad4b;color:#111;border:0;border-radius:8px;font-size:16px;font-weight:bold;margin-top:18px}
+button:active{opacity:.8}
+.resultado{background:#292929;padding:15px;border-radius:8px;margin-top:15px;line-height:1.8}
+footer{text-align:center;color:#aaa;padding:25px;font-size:12px}
+a{color:#d5ad4b}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">AL<span class="gold">CHAVES</span></div>
+  <p>VIAGENS • TRANSFERS • PASSEIOS</p>
+</header>
+
+<section class="hero">
+  <h1>Sua viagem começa aqui!</h1>
+  <p>Transfers com conforto, segurança e atendimento personalizado.</p>
+  <p class="gold">Maragogi • Litoral Sul • Pernambuco</p>
+</section>
+
+<main class="container">
+  <section class="card">
+    <h2>Nossos transfers</h2>
+    <div class="tarifa"><span>Maceió</span><strong>R$ 300,00</strong></div>
+    <div class="tarifa"><span>Recife</span><strong>R$ 300,00</strong></div>
+    <div class="tarifa"><span>Tamandaré</span><strong>R$ 100,00</strong></div>
+    <div class="tarifa"><span>Porto de Galinhas</span><strong>R$ 200,00</strong></div>
+    <p style="color:#bbb;font-size:12px">Valores por viagem, somente ida. Até 4 passageiros, além do motorista. Outros destinos sob consulta.</p>
+  </section>
+
+  <section class="card">
+    <h2>Solicitar uma viagem</h2>
+    <form id="reserva">
+      <label>Nome completo</label>
+      <input id="nome" required placeholder="Seu nome">
+
+      <label>WhatsApp para contato</label>
+      <input id="telefone" required type="tel" placeholder="DDD + telefone">
+
+      <label>Local de embarque</label>
+      <select id="origem" required>
+        <option value="">Escolha a origem</option>
+        <option>Maragogi - AL</option>
+        <option>Barreiros - PE</option>
+        <option>São José da Coroa Grande - PE</option>
+        <option>Outro local (informar nas observações)</option>
+      </select>
+
+      <label>Destino</label>
+      <select id="destino" required>
+        <option value="">Escolha o destino</option>
+        <option value="Maceió">Maceió</option>
+        <option value="Recife">Recife</option>
+        <option value="Tamandaré">Tamandaré</option>
+        <option value="Porto de Galinhas">Porto de Galinhas</option>
+        <option value="Outro destino">Outro destino (sob consulta)</option>
+      </select>
+
+      <label>Data da viagem</label>
+      <input id="data" type="date" required>
+
+      <label>Horário desejado</label>
+      <input id="hora" type="time" required>
+
+      <label>Quantidade de passageiros</label>
+      <select id="passageiros">
+        <option>1</option><option>2</option>
+        <option>3</option><option>4</option>
+      </select>
+
+      <label>Observações</label>
+      <textarea id="obs" rows="3" placeholder="Bagagens, voo, endereço ou outras informações"></textarea>
+
+      <div class="resultado" id="valores">
+        Preencha o destino para consultar os valores.
+      </div>
+
+      <button type="submit">SOLICITAR PELO WHATSAPP</button>
+    </form>
+  </section>
+
+  <section class="card" style="text-align:center">
+    <h2>Atendimento ALCHAVES</h2>
+    <p>WhatsApp: (81) 92002-3264</p>
+    <p>Pagamento: sinal de 30% e restante no dia da viagem.</p>
+    <p>Pix: uberalpe@hotmail.com</p>
+    <p style="font-size:12px;color:#bbb">A reserva depende de confirmação de disponibilidade e conferência do pagamento.</p>
+  </section>
+</main>
+
+<footer>ALCHAVES © 2026<br>Viagens, transfers e passeios.</footer>
+
+<script>
+const tarifas={
+ "Maceió":300,
+ "Recife":300,
+ "Tamandaré":100,
+ "Porto de Galinhas":200
+};
+
+const destino=document.getElementById("destino");
+const valores=document.getElementById("valores");
+
+destino.addEventListener("change",()=>{
+ const valor=tarifas[destino.value];
+ if(valor){
+   valores.innerHTML=
+   "Valor total: <strong>R$ "+valor.toFixed(2).replace(".",",")+
+   "</strong><br>Sinal de 30%: R$ "+
+   (valor*.3).toFixed(2).replace(".",",")+
+   "<br>Saldo de 70%: R$ "+
+   (valor*.7).toFixed(2).replace(".",",");
+ }else{
+   valores.textContent="Destino sob consulta. O valor será informado pelo atendimento.";
+ }
+});
+
+document.getElementById("reserva").addEventListener("submit",function(e){
+ e.preventDefault();
+
+ const nome=document.getElementById("nome").value.trim();
+ const telefone=document.getElementById("telefone").value.trim();
+ const origem=document.getElementById("origem").value;
+ const destinoValor=destino.value;
+ const data=document.getElementById("data").value;
+ const hora=document.getElementById("hora").value;
+ const passageiros=document.getElementById("passageiros").value;
+ const obs=document.getElementById("obs").value.trim();
+
+ const valor=tarifas[destinoValor];
+ const formatar=n=>"R$ "+n.toFixed(2).replace(".",",");
+
+ let mensagem=
+ "*ALCHAVES - NOVA SOLICITAÇÃO DE VIAGEM*\n\n"+
+ "Nome: "+nome+"\n"+
+ "WhatsApp: "+telefone+"\n"+
+ "Origem: "+origem+"\n"+
+ "Destino: "+destinoValor+"\n"+
+ "Data: "+data+"\n"+
+ "Horário: "+hora+"\n"+
+ "Passageiros: "+passageiros+"\n";
+
+ if(valor){
+   mensagem+="\nValor total: "+formatar(valor)+
+   "\nSinal (30%): "+formatar(valor*.3)+
+   "\nSaldo (70%): "+formatar(valor*.7)+"\n";
+ }else{
+   mensagem+="\nValor: A consultar\n";
+ }
+
+ mensagem+="\nObservações: "+(obs||"Nenhuma")+
+ "\n\nSolicito confirmação de disponibilidade.";
+
+ const url="https://wa.me/5581920023264?text="+encodeURIComponent(mensagem);
+ window.open(url,"_blank");
+});
+</script>
+</body>
+</html>
